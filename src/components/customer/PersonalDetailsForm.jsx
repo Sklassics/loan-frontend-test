@@ -84,7 +84,7 @@ const PersonalDetailsForm = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.31.179:8080/api/save-personal-details",
+        "https://loanapp-x5qm.onrender.com/api/save-personal-details",
         formDataToSend,
         {
           headers: { Authorization: `Bearer ${token}` },
