@@ -5,6 +5,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import api from "../../javascript/api";
 
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
 const PersonalDetailsForm = () => {
   const [formData, setFormData] = useState({
     first_name: "",
@@ -84,7 +88,7 @@ const PersonalDetailsForm = () => {
 
     try {
       const response = await axios.post(
-        "https://loanapp-x5qm.onrender.com/api/save-personal-details",
+        `${BASE_URL}/api/save-personal-details`,
         formDataToSend,
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -43,7 +43,7 @@ const CreditLimit = () => {
             console.log("API Response:", response);
             
             if (response.status === 200) {
-                console.log("Credit limit received:", response.data.creditLimit);
+                console.log("Credit limit received:", response.creditLimit);
                 setCreditLimit(response.data.creditLimit);
                 setMessage("Credit limit retrieved successfully.");
                 setButtonVisible(false);
@@ -57,7 +57,8 @@ const CreditLimit = () => {
                 const errorCode = err.response.data.code;
                 const errorMessage = err.response.data.message;
                 console.warn(`Error (${errorCode}): ${errorMessage}`);
-                setMessage(`Error (${errorCode}): ${errorMessage}`);
+                setMessage(`
+                     ${errorMessage}`);
             }
         } finally {
             console.log("Finished fetching credit limit.");

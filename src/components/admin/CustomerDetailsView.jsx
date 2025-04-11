@@ -58,6 +58,7 @@ const CustomerDetailsView = () => {
         "/validate/save-approval",
         {
           mobileNumber,
+          actionType,
           reason,
         },
         {
@@ -128,10 +129,10 @@ const CustomerDetailsView = () => {
 
       {/* Approval & Rejection Buttons */}
       <div style={{ marginTop: "20px" }}>
-        <button style={approveStyle} onClick={() => handleAction("approved")}>
+        <button style={approveStyle} onClick={() => handleAction("APPROVED")}>
           Approve
         </button>
-        <button style={rejectStyle} onClick={() => handleAction("rejected")}>
+        <button style={rejectStyle} onClick={() => handleAction("REJECTED")}>
           Reject
         </button>
       </div>
