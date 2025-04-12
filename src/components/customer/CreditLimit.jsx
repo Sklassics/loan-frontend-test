@@ -22,7 +22,7 @@ const CreditLimit = () => {
 
 
     const fetchCreditLimit = async () => {
-        console.log("Fetching credit limit...");
+        console.log("Fetching credit limit....");
         const token = getTokenFromCookies();
 
         if (!token) {
