@@ -26,7 +26,7 @@ const CreditLimit = () => {
         const token = getTokenFromCookies();
 
         if (!token) {
-            console.warn("No token found! Authentication required.");
+            console.warn("No token found! Authentication required...");
             setMessage("Authentication required. Please log in.");
             return;
         }
