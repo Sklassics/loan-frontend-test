@@ -6,6 +6,8 @@ const BankDetailsForm = () => {
         bankName: "",
         address: "",
         accountNumber: "",
+        ifsc:"",
+        
     });
     const [otp, setOtp] = useState("");
     const [otpSent, setOtpSent] = useState(false);

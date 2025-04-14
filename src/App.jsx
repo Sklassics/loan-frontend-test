@@ -16,6 +16,7 @@ import AdminLoginPage from "./components/admin/AdminLoginPage";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import CustomerDetailsView from "./components/admin/CustomerDetailsView";
 import SelfieUpload from "./components/customer/SelfieUpload";
+import CreateAdminPage from "./components/admin/CreateAdminPage";
 
 
 function App() {
@@ -51,7 +52,8 @@ function App() {
 
 
 
-
+        
+        <Route path="/admin-create" element={<CreateAdminPage/>}/>
 
         <Route path="/admin" element={<AdminLoginPage/>}/>
 
