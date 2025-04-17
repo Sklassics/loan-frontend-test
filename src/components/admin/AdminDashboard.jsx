@@ -13,11 +13,14 @@ const AdminDashboard = () => {
       try {
         const token = document.cookie.split('; ').find(row => row.startsWith('admintoken='))?.split('=')[1];
         if (!token) throw new Error('Token not found');
-
+  
         const response = await api.get('/validate/creditLimit', {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "ngrok-skip-browser-warning": "true",
+          },
         });
-
+  
         setCreditLimitStatus(response.data);
         if (response.data.success && response.data.numbers) {
           setNumbers(response.data.numbers);
@@ -27,7 +30,7 @@ const AdminDashboard = () => {
         setCreditLimitStatus({ success: false, message: 'Error fetching credit limit.' });
       }
     };
-
+  
     fetchCreditLimit();
   }, []);
 

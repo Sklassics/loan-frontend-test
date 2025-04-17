@@ -24,7 +24,10 @@ const CustomerDetailsView = () => {
 
         const response = await api.get(
           `/admin/customers/${mobileNumber}`,
-          { headers: { Authorization: `Bearer ${token}` } }
+          { headers: { Authorization: `Bearer ${token}`,
+            "ngrok-skip-browser-warning": "true",
+           }
+         }
         );
 
         if (response.data?.length > 0) {
@@ -63,6 +66,7 @@ const CustomerDetailsView = () => {
         },
         {
           headers: { Authorization: `Bearer ${token}` },
+          "ngrok-skip-browser-warning": "true",
         }
       );
   

@@ -21,7 +21,7 @@ const PersonalDetailsForm = () => {
     pincode: "",
     country: "",
     alternate_number: "",
-    employment_type: "Salaried",
+    employment_type: "employee",
     annual_income: "",
     college_id: "",
     college_address: "",
@@ -172,7 +172,7 @@ const PersonalDetailsForm = () => {
                   {field === "country" && <option value="India">India</option>}
                   {field === "employment_type" && (
                     <>
-                      <option value="Salaried">Salaried</option>
+                      <option value="employee">Employee</option>
                       <option value="Self-Employed">Self-Employed</option>
                       <option value="Student">Student</option>
                     </>
@@ -224,7 +224,7 @@ const PersonalDetailsForm = () => {
         )}
 
         {/* Conditional Fields for Salaried */}
-        {formData.employment_type === "Salaried" && (
+        {formData.employment_type === "employee" && (
           <>
             <label>Company ID</label>
             <input
