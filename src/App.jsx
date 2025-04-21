@@ -17,6 +17,9 @@ import AdminDashboard from "./components/admin/AdminDashboard";
 import CustomerDetailsView from "./components/admin/CustomerDetailsView";
 import SelfieUpload from "./components/customer/SelfieUpload";
 import CreateAdminPage from "./components/admin/CreateAdminPage";
+import CreateAdmin from "./components/customerportal/CreateAdmin";
+import ListCustomers from "./components/customerportal/ListCustomers";
+import CustomerPortalLogin from "./components/customerportal/CustomerPortalLogin";
 
 
 function App() {
@@ -60,6 +63,12 @@ function App() {
         <Route path="/admin-dashboard" element={<AdminDashboard/>}/>
 
         <Route path="/admin/view/:mobileNumber" element={<CustomerDetailsView/>} />
+
+
+        <Route path="/customerportaladmin-create" element={<CreateAdmin />} />
+
+        <Route path="/customerportal-login" element={<CustomerPortalLogin />} />
+        <Route path="/customerportal-dashboard" element={<ListCustomers />} />
 
 
 
