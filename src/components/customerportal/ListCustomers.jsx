@@ -24,6 +24,7 @@ const ListCustomers = () => {
       const response = await api.get('/api/customer-portal-customers/list', {
         headers: {
           Authorization: `Bearer ${token}`,
+           "ngrok-skip-browser-warning": "true"
         },
       });
       setCustomers(response.data.customers || []);
