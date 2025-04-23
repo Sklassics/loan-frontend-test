@@ -20,6 +20,9 @@ import CreateAdminPage from "./components/admin/CreateAdminPage";
 import CreateAdmin from "./components/customerportal/CreateAdmin";
 import ListCustomers from "./components/customerportal/ListCustomers";
 import CustomerPortalLogin from "./components/customerportal/CustomerPortalLogin";
+import CreateRepaymentPortalAdmin from "./components/repaymentportal/CreateRepaymentPortalAdmin";
+import RepaymentPortalLogin from "./components/repaymentportal/RepaymentPortalLogin";
+import RepaymentList from "./components/repaymentportal/RepaymentList";
 
 
 function App() {
@@ -69,6 +72,13 @@ function App() {
 
         <Route path="/customerportal-login" element={<CustomerPortalLogin />} />
         <Route path="/customerportal-dashboard" element={<ListCustomers />} />
+
+        <Route path="/repaymentportaladmin-create" element={<CreateRepaymentPortalAdmin />} />
+
+        <Route path="/repaymentportal-login" element={<RepaymentPortalLogin />} />
+
+        <Route path="/repayment-list" element={<RepaymentList />} />
+
 
 
 
