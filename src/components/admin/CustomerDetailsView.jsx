@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import api from "../../javascript/api";
 
@@ -11,7 +11,7 @@ const CustomerDetailsView = () => {
   const [reason, setReason] = useState("");
 
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const fetchCustomerDetails = async () => {
       try {
@@ -24,10 +24,12 @@ const CustomerDetailsView = () => {
 
         const response = await api.get(
           `/admin/customers/${mobileNumber}`,
-          { headers: { Authorization: `Bearer ${token}`,
-            "ngrok-skip-browser-warning": "true",
-           }
-         }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "ngrok-skip-browser-warning": "true",
+            },
+          }
         );
 
         if (response.data?.length > 0) {
@@ -48,15 +50,16 @@ const CustomerDetailsView = () => {
   const handleAction = (type) => {
     setActionType(type);
   };
+
   const handleSubmit = async () => {
     try {
       const token = document.cookie
         .split("; ")
         .find((row) => row.startsWith("admintoken="))
         ?.split("=")[1];
-  
+
       if (!token) throw new Error("Token not found");
-  
+
       await api.post(
         "/validate/save-approval",
         {
@@ -69,18 +72,16 @@ const CustomerDetailsView = () => {
           "ngrok-skip-browser-warning": "true",
         }
       );
-  
+
       alert(`Customer ${actionType} successful!`);
       setActionType(null);
       setReason("");
-      navigate("/admin-dashboard")
+      navigate("/admin-dashboard");
     } catch (error) {
       console.error("Error submitting action:", error);
       alert("Failed to submit action");
     }
   };
-  
-  
 
   if (loading) return <p>Loading customer details...</p>;
   if (!customerData) return <p>No customer data found.</p>;
@@ -90,23 +91,65 @@ const CustomerDetailsView = () => {
       <h2>Customer Details</h2>
 
       {/* Image Display Section */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "30px", marginBottom: "20px" }}>
-        {customerData.pancardImage && (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "30px",
+          marginBottom: "20px",
+        }}
+      >
+        {/* PAN Card Image */}
+        {customerData.pancardImage &&
+        customerData.pancardImage !== "Error fetching image" ? (
           <div>
             <h3>PAN Card</h3>
-            <img src={customerData.pancardImage} alt="PAN Card" style={imageStyle} />
+            <img
+              src={customerData.pancardImage}
+              alt="PAN Card"
+              style={imageStyle}
+            />
+          </div>
+        ) : (
+          <div>
+            <h3>PAN Card</h3>
+            <p style={fallbackTextStyle}>PAN image not available</p>
           </div>
         )}
-        {customerData.selfieImage && (
+
+        {/* Selfie Image */}
+        {customerData.selfieImage &&
+        customerData.selfieImage !== "Error fetching image" ? (
           <div>
             <h3>Selfie</h3>
-            <img src={customerData.selfieImage} alt="Selfie" style={imageStyle} />
+            <img
+              src={customerData.selfieImage}
+              alt="Selfie"
+              style={imageStyle}
+            />
+          </div>
+        ) : (
+          <div>
+            <h3>Selfie</h3>
+            <p style={fallbackTextStyle}>Selfie image not available</p>
           </div>
         )}
-        {customerData.employeementType && (
+
+        {/* ID Proof Image */}
+        {customerData.employeementType &&
+        customerData.employeementType !== "Error fetching image" ? (
           <div>
             <h3>ID Proof</h3>
-            <img src={customerData.employeementType} alt="ID Proof" style={imageStyle} />
+            <img
+              src={customerData.employeementType}
+              alt="ID Proof"
+              style={imageStyle}
+            />
+          </div>
+        ) : (
+          <div>
+            <h3>ID Proof</h3>
+            <p style={fallbackTextStyle}>ID proof not available</p>
           </div>
         )}
       </div>
@@ -209,6 +252,13 @@ const submitStyle = {
   marginTop: "10px",
   border: "none",
   cursor: "pointer",
+};
+
+const fallbackTextStyle = {
+  color: "gray",
+  fontStyle: "italic",
+  textAlign: "center",
+  marginTop: "10px",
 };
 
 export default CustomerDetailsView;
